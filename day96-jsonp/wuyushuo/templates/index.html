@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+    <h1>皇家赌场</h1>
+    <input type="text" />
+    <div id="i1"></div>
+
+    <input type="button" onclick="jsonp('http://127.0.0.1:8000/get_data.html?callback=funcvvvvvv')"  value="发送JSONP请求"/>
+    <input type="button" onclick="Jsonp2()"  value="发送JSONP2请求"/>
+    <input type="button" onclick="Jsonp3()"  value="发送JSONP3请求"/>
+
+    <script src="/static/jquery-3.2.1.js"></script>
+    <script>
+        /*
+        $.ajax({
+            url: 'http://127.0.0.1:8000/get_data.html',
+            type: 'GET',
+            success:function (arg) {
+                alert(arg);
+            }
+        })
+        */
+
+        /*
+        手动实现jsonp
+         */
+            /*
+        function funcvvvvvv(arg) {
+            alert(arg);
+
+            document.head.removeChild(tag);
+        }
+
+        function jsonp(url){
+            tag = document.createElement('script');
+            tag.src = url;
+            document.head.appendChild(tag);
+            */
+
+
+        function Jsonp2(){
+            $.ajax({
+                url: "http://127.0.0.1:8000/get_data.html",
+                type: 'GET',
+                dataType: 'JSONP',
+                success: function(data){
+                    console.log(data);
+                }
+            })
+        }
+
+        function list(arg) {
+            console.log(arg);
+        }
+        function Jsonp3(){
+            $.ajax({
+                url: "http://www.jxntv.cn/data/jmd-jxtv2.html",
+                type: 'GET',
+                dataType: 'JSONP',
+                jsonp: 'callback',//定义callback头
+                jsonpCallback: 'list' //定义函数名称
+            })
+        }
+
+    </script>
+</body>
+</html>
